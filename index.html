@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💖 For Anaya, My Burning Love 💖</title>
+
+<style>
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background: radial-gradient(circle at top, #ffb3c6 0%, #ff758c 35%, #ff7eb3 70%, #b3003c 100%);
+    overflow-x: hidden;
+    color: white;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 3em;
+    margin-top: 40px;
+    text-shadow: 2px 2px 8px #b3003c;
+    animation: fadeIn 1.5s ease;
+  }
+
+  p { font-size: 1.1em; animation: fadeIn 2s ease; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .burning-heart {
+    font-size: 4em;
+    margin-top: 10px;
+    animation: burn 1.5s infinite alternate;
+    text-shadow: 0 0 20px #ff003c, 0 0 40px #ff005c;
+  }
+
+  @keyframes burn {
+    from { transform: scale(1); filter: brightness(1); }
+    to { transform: scale(1.15); filter: brightness(1.4); }
+  }
+
+  .section {
+    position: relative;
+    max-width: 900px;
+    margin: 20px auto 40px auto;
+    padding: 20px 25px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 20px;
+    backdrop-filter: blur(6px);
+    overflow: hidden;
+  }
+
+  .intro-poem {
+    font-size: 1.1em;
+    line-height: 1.7em;
+    white-space: pre-line;
+    text-align: left;
+    position: relative;
+    z-index: 3;
+  }
+
+  .btn {
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1.1em;
+    margin-top: 15px;
+    background: #ff2d55;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    position: relative;
+    z-index: 3;
+  }
+
+  .btn:hover { background: #ff003c; }
+
+  .question { display: none; margin-top: 15px; }
+  .question h2 { font-size: 1.4em; }
+
+  .options {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .option-btn {
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1em;
+    background: rgba(255,255,255,0.9);
+    color: #b3003c;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .option-btn:hover { background: #ffe3ec; }
+
+  .feedback {
+    margin-top: 10px;
+    font-size: 1em;
+    min-height: 1.2em;
+  }
+
+  .next-question-btn {
+    margin-top: 12px;
+    background: #ff4d6d;
+    display: none;
+  }
+
+  /* Collage background */
+  .collage-container {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 1;
+    opacity: 0.45;
+  }
+
+  .collage-image {
+    position: absolute;
+    width: 45%;
+    max-width: 260px;
+    border-radius: 18px;
+    object-fit: cover;
+    opacity: 0;
+    animation: collageFade 33s linear infinite;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+  }
+
+  @keyframes collageFade {
+    0% { opacity: 0; transform: scale(1); }
+    5% { opacity: 1; transform: scale(1.02); }
+    25% { opacity: 1; transform: scale(1.05); }
+    30% { opacity: 0; transform: scale(1.08); }
+    100% { opacity: 0; transform: scale(1.08); }
+  }
+
+  /* Polaroids */
+  .polaroid {
+    position: absolute;
+    width: 140px;
+    height: 180px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0.9;
+    animation: floatPolaroid 26s linear infinite;
+    z-index: 2;
+  }
+
+  .polaroid img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+
+  .polaroid span {
+    margin-top: 6px;
+    font-size: 0.7em;
+    color: #444;
+  }
+
+  @keyframes floatPolaroid {
+    0% { transform: translateY(40px) rotate(-6deg); opacity: 0; }
+    10% { opacity: 1; }
+    50% { transform: translateY(-40px) rotate(4deg); opacity: 1; }
+    100% { transform: translateY(-80px) rotate(-4deg); opacity: 0; }
+  }
+
+  /* Timeline */
+  #timelineSection { display:none; }
+
+  .timeline-title {
+    font-size: 1.6em;
+    margin-bottom: 10px;
+  }
+
+  .timeline-card {
+    margin-top: 15px;
+    padding: 18px 20px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.18);
+    text-align: center;
+  }
+
+  .timeline-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 18px;
+    margin: 10px 0;
+    filter: brightness(0.92) contrast(1.05);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+  }
+
+  /* Final page */
+  #finalMessage {
+    display:none;
+    font-size:2.2em;
+    margin-top:40px;
+    text-shadow:2px 2px 10px #b3003c;
+  }
+
+  #loveLetter {
+    display:none;
+    margin:30px auto;
+    max-width:700px;
+    background:rgba(255,255,255,0.18);
+    padding:30px;
+    border-radius:20px;
+    font-size:1.25em;
+    line-height:1.7em;
+    text-align:center;
+    backdrop-filter:blur(8px);
+  }
+
+  .gallery {
+    display:none;
+    margin:40px auto 60px auto;
+    max-width:700px;
+    position: relative;
+  }
+
+  .gallery img {
+    width:100%;
+    height:auto;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.35);
+    position:absolute;
+    top:0;
+    left:0;
+    opacity:0;
+    transition: opacity 1.8s ease-in-out;
+  }
+
+  /* Floating hearts */
+  .floating-heart {
+    position: fixed;
+    bottom: -40px;
+    color: #ff1a4b;
+    font-size: 2rem;
+    animation: floatUp 6s linear forwards;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.8;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    50% { transform: translateY(-50vh) translateX(20px); opacity: 1; }
+    100% { transform: translateY(-110vh) translateX(-20px); opacity: 0; }
+  }
+
+  /* Confetti */
+  @keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); opacity:1; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity:0; }
+  }
+
+  @media (max-width: 700px) {
+    .section { margin: 15px 10px 30px 10px; }
+    h1 { font-size: 2.3em; }
+    .intro-poem { font-size: 1em; }
+  }
+</style>
+</head>
+
+<body>
+
+<h1>💌 For Anaya, My Burning Love 💌</h1>
+<div class="burning-heart">❤️‍🔥</div><!-- INTRO SECTION -->
+<div class="section" id="introSection">
+
+  <div class="collage-container">
+    <img src="images/collage/ccollage1.jpg" class="collage-image" style="top:5%; left:5%; animation-delay:0s;">
+    <img src="images/collage/collage2.jpg" class="collage-image" style="top:10%; right:5%; animation-delay:3s;">
+    <img src="images/collage/collage3.jpg" class="collage-image" style="bottom:8%; left:8%; animation-delay:6s;">
+    <img src="images/collage/collage4.jpg" class="collage-image" style="bottom:12%; right:10%; animation-delay:9s;">
+    <img src="images/collage/collage5.jpg" class="collage-image" style="top:35%; left:18%; animation-delay:12s;">
+    <img src="images/collage/collage6.jpg" class="collage-image" style="top:30%; right:18%; animation-delay:15s;">
+    <img src="images/collage/collage7.jpg" class="collage-image" style="top:55%; left:5%; animation-delay:18s;">
+    <img src="images/collage/collage8.jpg" class="collage-image" style="top:60%; right:5%; animation-delay:21s;">
+    <img src="images/collage/collage9.jpg" class="collage-image" style="top:15%; left:35%; animation-delay:24s;">
+    <img src="images/collage/collage10.jpg" class="collage-image" style="bottom:18%; left:35%; animation-delay:27s;">
+    <img src="images/collage/collage11.jpg" class="collage-image" style="top:40%; right:35%; animation-delay:30s;">
+
+    <!-- Polaroids -->
+    <div class="polaroid" style="left:4%; top:8%; animation-delay:1s;">
+      <img src="images/collage/collage1.jpg">
+      <span>I chose this moment every single day &lt;3</span>
+    </div>
+
+    <div class="polaroid" style="right:6%; top:18%; animation-delay:5s;">
+      <img src="images/collage/collage3.jpg">
+      <span>Look at us being effortlessly fine for no reason.</span>
+    </div>
+
+    <div class="polaroid" style="left:12%; bottom:10%; animation-delay:9s;">
+      <img src="images/collage/collage4.jpg">
+      <span>Two idiots dancing through life — my favourite kind of chaos.</span>
+    </div>
+
+    <div class="polaroid" style="right:12%; bottom:12%; animation-delay:13s;">
+      <img src="images/collage/collage6.jpg">
+      <span>You being silly again… and me falling even harder.</span>
+    </div>
+
+    <div class="polaroid" style="left:35%; top:60%; animation-delay:17s;">
+      <img src="images/collage/collage8.jpg">
+      <span>You walked in looking like a prayer answered.</span>
+    </div>
+
+    <div class="polaroid" style="right:30%; top:5%; animation-delay:21s;">
+      <img src="images/collage/collage10.jpg">
+      <span>Written long before we knew it. Alhamdulillah for this moment.</span>
+    </div>
+  </div>
+
+  <p class="intro-poem">
+My Anaya,
+there are people the world meets by accident,
+and then there are souls written into our story
+long before we ever learned to read fate.
+
+You walk into a room
+and the air rearranges itself around you —
+as if even the light knows
+it should behave more gently in your presence.
+
+The world may not always understand
+how to hold something as rare as you,
+but my heart learned your name
+before it learned its own rhythm.
+It beats in a language
+that only you seem to understand.
+
+There are a thousand small things
+you keep your distance from —
+not out of fear,
+but because you were always meant
+for something deeper than the ordinary.
+And somehow,
+you chose me to walk that path with you.
+
+And if you’re reading this,
+you already know the truth I’m circling around:
+you are the one miracle
+I never dared to ask for
+but somehow received.
+
+Now keep going.
+I’ve hidden a small journey for you —
+a trail only two people
+who have lived what we’ve lived
+could ever follow.
+Reach the end,
+and you’ll find the place
+where my love waits for you
+like a lantern glowing in the quiet of night.
+  </p>
+
+  <button class="btn" id="startQuizBtn">Start the game 💘</button>
+</div>
+
+<!-- QUIZ SECTION -->
+<div class="section" id="quizSection" style="display:none;">
+
+  <div id="q1" class="question">
+    <h2>1️⃣ When did we first talk to each other?</h2>
+    <div class="options">
+      <button class="option-btn" data-correct="true">November 4th</button>
+      <button class="option-btn">January 1st</button>
+      <button class="option-btn">February 14th</button>
+      <button class="option-btn">July 27th</button>
+    </div>
+    <div class="feedback" id="feedback1"></div>
+    <button class="btn next-question-btn" data-next="1">Next ➜</button>
+  </div>
+
+  <div id="q2" class="question">
+    <h2>2️⃣ Who farts the loudest?</h2>
+    <div class="options">
+      <button class="option-btn" data-correct="true">Zain</button>
+      <button class="option-btn">Anaya</button>
+      <button class="option-btn">The neighbour</button>
+      <button class="option-btn">No one, we are elegant angels</button>
+    </div>
+    <div class="feedback" id="feedback2"></div>
+    <button class="btn next-question-btn" data-next="2">Next ➜</button>
+  </div>
+
+  <div id="q3" class="question">
+    <h2>3️⃣ Who snores the loudest?</h2>
+    <div class="options">
+      <button class="option-btn" data-correct="true">Anaya</button>
+      <button class="option-btn">Zain</button>
+      <button class="option-btn">The cat you don’t have</button>
+      <button class="option-btn">The fridge</button>
+    </div>
+    <div class="feedback" id="feedback3"></div>
+    <button class="btn next-question-btn" data-next="3">Next ➜</button>
+  </div>
+
+  <div id="q4" class="question">
+    <h2>4️⃣ What day did we have our nikkah?</h2>
+    <div class="options">
+      <button class="option-btn" data-correct="true">July 27th</button>
+      <button class="option-btn">November 4th</button>
+      <button class="option-btn">December 25th</button>
+      <button class="option-btn">August 1st</button>
+    </div>
+    <div class="feedback" id="feedback4"></div>
+    <button class="btn next-question-btn" data-next="4">Next ➜</button>
+  </div>
+
+</div>
+
+<!-- TIMELINE SECTION -->
+<div class="section" id="timelineSection" style="display:none;">
+  <h2 class="timeline-title">🕰 Our Little Love Story</h2>
+  <p>Before the final question, walk back through the moments that brought us here.</p>
+
+  <div class="timeline-card" id="timelineCard">
+    <h3 id="timelineTitle"></h3>
+    <img id="timelineImage" src="" alt="Timeline moment">
+    <p id="timelineText"></p>
+  </div>
+
+  <button class="btn" id="nextTimelineBtn">Next moment ➜</button>
+</div>
+
+<!-- VALENTINE SECTION -->
+<div class="section" id="valentineSection" style="display:none; text-align:center;">
+  <h2 style="font-size:2em; margin-bottom:20px;">❤️ Final question: Will you be my Valentine? ❤️</h2>
+
+  <div style="display:flex; justify-content:center; gap:20px; margin-top:20px;">
+    <button class="btn" id="yesBtn" style="font-size:1.3em;">Yes! 💖</button>
+    <button class="btn" id="noBtn" style="font-size:1.3em;">No 😢</button>
+  </div>
+</div>
+
+<!-- FINAL MESSAGE -->
+<div id="finalMessage">
+  🌹 I knew you'd say yes, my love 🌹
+</div>
+
+<!-- LOVE LETTER -->
+<div id="loveLetter">
+  My heart has been yours from the moment our story began.<br>
+  Every laugh, every late-night chat, every moment of chaos and comfort —<br>
+  it all led me to you.<br><br>
+  You are my peace, my joy, my burning love.<br>
+  Forever yours, Zain. ❤️‍🔥
+</div>
+
+<!-- FINAL GALLERY -->
+<div class="gallery" id="photoGallery">
+  <img src="images/gallery/gallery1.jpg" alt="Us 1">
+  <img src="images/gallery/gallery2.jpg" alt="Us 2">
+  <img src="images/gallery/gallery3.jpg" alt="Us 3">
+  <img src="images/gallery/gallery4.jpg" alt="Us 4">
+  <img src="images/gallery/gallery5.jpg" alt="Us 5">
+  <img src="images/gallery/gallery6.jpg" alt="Us 6">
+</div>
+<script>
+// ---------- ELEMENT REFERENCES ----------
+const introSection = document.getElementById('introSection');
+const quizSection = document.getElementById('quizSection');
+const timelineSection = document.getElementById('timelineSection');
+const valentineSection = document.getElementById('valentineSection');
+const finalMessage = document.getElementById('finalMessage');
+const loveLetter = document.getElementById('loveLetter');
+const gallery = document.getElementById('photoGallery');
+
+const startQuizBtn = document.getElementById('startQuizBtn');
+const questions = [
+  document.getElementById('q1'),
+  document.getElementById('q2'),
+  document.getElementById('q3'),
+  document.getElementById('q4')
+];
+const feedbacks = [
+  document.getElementById('feedback1'),
+  document.getElementById('feedback2'),
+  document.getElementById('feedback3'),
+  document.getElementById('feedback4')
+];
+const nextButtons = document.querySelectorAll('.next-question-btn');
+
+const yesBtn = document.getElementById('yesBtn');
+const noBtn = document.getElementById('noBtn');
+
+const timelineTitle = document.getElementById('timelineTitle');
+const timelineText = document.getElementById('timelineText');
+const timelineImage = document.getElementById('timelineImage');
+const nextTimelineBtn = document.getElementById('nextTimelineBtn');
+
+const galleryImages = gallery.querySelectorAll('img');
+
+// ---------- QUIZ LOGIC ----------
+const correctMessages = [
+  "Yaaaaas, we laughed so much that day, but you might have been googling your responses.",
+  "Yes it’s me, but at least it doesn’t stink like your pebbles.",
+  "Awww my poor baby, it’s because of your retainers — I’ll beat them up for you.",
+  "Subhanallah, it was written."
+];
+
+const tryAgainMessages = [
+  "Close, but not quite. Try again, genius. 😉",
+  "Nope, your prize is not unlocked yet. Have another go. 💭",
+  "Wrong answer, right person. Try again, my love. ❤️",
+  "You know this. Don’t embarrass us now. 😏",
+  "Nearly! Your brain is buffering, click again. 🔁"
+];
+
+let currentQuestionIndex = 0;
+
+function showQuestion(index) {
+  questions.forEach(q => q.style.display = 'none');
+  nextButtons.forEach(btn => btn.style.display = 'none');
+  if (questions[index]) {
+    questions[index].style.display = 'block';
+  }
+}
+
+startQuizBtn.addEventListener('click', () => {
+  introSection.style.display = 'none';
+  quizSection.style.display = 'block';
+  showQuestion(0);
+});
+
+document.querySelectorAll('.question').forEach((questionEl, qIndex) => {
+  const options = questionEl.querySelectorAll('.option-btn');
+  const nextBtn = questionEl.querySelector('.next-question-btn');
+
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      const isCorrect = option.dataset.correct === 'true';
+      if (isCorrect) {
+        feedbacks[qIndex].textContent = correctMessages[qIndex];
+        nextBtn.style.display = 'inline-block';
+      } else {
+        const msg = tryAgainMessages[Math.floor(Math.random() * tryAgainMessages.length)];
+        feedbacks[qIndex].textContent = msg;
+      }
+    });
+  });
+
+  nextBtn.addEventListener('click', () => {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+      showQuestion(currentQuestionIndex);
+    } else {
+      showTimeline();
+    }
+  });
+});
+
+// ---------- TIMELINE LOGIC ----------
+const timelineMoments = [
+  {
+    title: "First Date – Bowling & Moana 2",
+    text: "Your nose was runny, you kept disappearing to the toilet, and you brought a packed lunch like a responsible queen. Meanwhile, I ate a burger covered in sesame seeds — the very thing you’re deathly allergic to.",
+    img: "images/timeline/timeline1-first-date.jpg"
+  },
+  {
+    title: "First Kiss – Botanical Gardens",
+    text: "A quiet moment in the middle of all the chaos. Just us, the trees, and a kiss that felt like the start of something real.",
+    img: "images/timeline/timeline2-first-kiss.jpg"
+  },
+  {
+    title: "Strawberry Picking",
+    text: "You were terrified of the wasps, but we still made cute TikToks and laughed our way through the whole thing.",
+    img: "images/timeline/timeline3-strawberry.jpg"
+  },
+  {
+    title: "Pottery Painting",
+    text: "I made you a plate, you made me a bowl — both slightly wonky, both perfect because they were ours.",
+    img: "images/timeline/timeline4-pottery.jpg"
+  },
+  {
+    title: "Your Brother’s Wedding",
+    text: "We showed up together, dressed up, looking like a whole power couple without even trying.",
+    img: "images/timeline/timeline5-wedding.jpg"
+  },
+  {
+    title: "Your Birthday Surprise",
+    text: "I surprised you, and you made me do bababoullie ten times — and honestly, I’d do it again.",
+    img: "images/timeline/timeline6-birthday.jpg"
+  }
+];
+
+let currentTimelineIndex = 0;
+
+function renderTimelineCard() {
+  const moment = timelineMoments[currentTimelineIndex];
+  timelineTitle.textContent = moment.title;
+  timelineText.textContent = moment.text;
+  timelineImage.src = moment.img;
+
+  nextTimelineBtn.textContent =
+    currentTimelineIndex === timelineMoments.length - 1
+      ? "Take me to the question ➜"
+      : "Next moment ➜";
+}
+
+function showTimeline() {
+  quizSection.style.display = 'none';
+  timelineSection.style.display = 'block';
+  currentTimelineIndex = 0;
+  renderTimelineCard();
+}
+
+nextTimelineBtn.addEventListener('click', () => {
+  if (currentTimelineIndex < timelineMoments.length - 1) {
+    currentTimelineIndex++;
+    renderTimelineCard();
+  } else {
+    timelineSection.style.display = 'none';
+    valentineSection.style.display = 'block';
+  }
+});
+
+// ---------- VALENTINE LOGIC ----------
+yesBtn.addEventListener('click', () => {
+  valentineSection.style.display = 'none';
+  finalMessage.style.display = 'block';
+  loveLetter.style.display = 'block';
+  startGallery();
+  launchConfetti();
+});
+
+noBtn.addEventListener('mouseover', () => {
+  noBtn.style.position = 'absolute';
+  noBtn.style.left = Math.random() * 70 + '%';
+  noBtn.style.top = Math.random() * 70 + '%';
+});
+
+// ---------- GALLERY (CROSS-DISSOLVE) ----------
+let galleryIndex = 0;
+let galleryStarted = false;
+
+function startGallery() {
+  if (galleryStarted) return;
+  galleryStarted = true;
+  gallery.style.display = 'block';
+  galleryImages.forEach((img, i) => {
+    img.style.opacity = i === 0 ? '1' : '0';
+  });
+  setTimeout(cycleGallery, 3500);
+}
+
+function cycleGallery() {
+  const current = galleryIndex;
+  const next = (galleryIndex + 1) % galleryImages.length;
+
+  galleryImages[current].style.opacity = '0';
+  galleryImages[next].style.opacity = '1';
+
+  galleryIndex = next;
+  setTimeout(cycleGallery, 3500);
+}
+
+// ---------- FLOATING HEARTS ----------
+setInterval(() => {
+  const heart = document.createElement('div');
+  heart.className = 'floating-heart';
+  heart.textContent = '❤️';
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.fontSize = (Math.random() * 1.5 + 1.2) + 'rem';
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6500);
+}, 700);
+
+// ---------- CONFETTI ----------
+function launchConfetti() {
+  for (let i = 0; i < 80; i++) {
+    const conf = document.createElement('div');
+    conf.style.position = 'fixed';
+    conf.style.width = '10px';
+    conf.style.height = '10px';
+    conf.style.background = ['#ff4d6d','#ff99ac','#ffe3ec'][Math.floor(Math.random()*3)];
+    conf.style.left = Math.random()*100 + 'vw';
+    conf.style.top = '-20px';
+    conf.style.opacity = 0.9;
+    conf.style.transform = `rotate(${Math.random()*360}deg)`;
+    conf.style.animation = 'fall 4s linear forwards';
+    conf.style.zIndex = 5;
+    document.body.appendChild(conf);
+    setTimeout(() => conf.remove(), 4000);
+  }
+}
+</script>
+
+</body>
+</html>
+
